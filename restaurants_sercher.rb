@@ -3,11 +3,11 @@ require 'json'
 require 'csv'
 
 
-KEYID = ENV['GRAND_ACCESS_KEY']
+KEYID = ENV['GRNB_ACCESS_KEY']
 HIT_PER_PAGE = 100
 PREF = "PREF13"
 FREEWORD_CONDITION = 1
-FREEWORD = "渋谷駅"
+FREEWORD = "渋谷"
 PARAMS = {"keyid": KEYID, "hit_per_page":HIT_PER_PAGE, "pref":PREF, "freeword_condition":FREEWORD_CONDITION, "freeword":FREEWORD}
 def write_data_to_csv(params)
     restaurants=[["名称","住所","営業日","電話番号"]]
@@ -15,7 +15,7 @@ def write_data_to_csv(params)
     uri.query = URI.encode_www_form(PARAMS)  
     json_res = Net::HTTP.get uri
    response = JSON.load(json_res)
-    
+   puts response 
     if response.has_key?("error") then
     puts "エラーが発生しました"
     end
